@@ -1,32 +1,9 @@
-<?php
-$portfolio_data = [
-    'name' => 'Adelia Khoirun Nisa',
-    'nickname' => 'Adelia',
-    'age' => 18,
-    'birthday' => '20 November 2005',
-    'npm' => '2414372007',
-    'kelas' => 'II TIF REGULAR 1A',
-    'alamat' => 'Medan Baru, Jln K.H. Wahid Hasyim, Rumah Dinas No. 3D',
-    'jurusan' => 'Teknologi Informasi',
-    'background' => 'Saya tamatan dari SMK DR CIPTO MANGUNKUSUMO, saya suka art dan suka menggambar, dan ingin menambah kemampuan saya dalam IT dan desain grafis.',
-    'hobby' => 'Bermain game dan membaca novel.',
-    'profile_image' => 'image.png'
-];
-
-// Fungsi untuk mengecek apakah file gambar ada
-function checkImageExists($imagePath) {
-    return file_exists($imagePath);
-}
-
-$imageExists = checkImageExists($portfolio_data['profile_image']);
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php echo $portfolio_data['name']; ?> - Portfolio</title>
+    <title>Adelia Khoirun Nisa - Portfolio</title>
     <style>
         * {
             margin: 0;
@@ -349,78 +326,66 @@ $imageExists = checkImageExists($portfolio_data['profile_image']);
                 
                 <div class="info-card">
                     <h3>Name</h3>
-                    <p><?php echo $portfolio_data['name']; ?> (<?php echo $portfolio_data['nickname']; ?>)</p>
-                    <p>Sometimes people can call me simply "<?php echo strtolower($portfolio_data['nickname']); ?>"</p>
+                    <p>Adelia Khoirun Nisa (Adelia)</p>
+                    <p>Sometimes people can call me simply "adelia"</p>
                     <p>Do you have a special name for me?</p>
                 </div>
                 
                 <div class="info-card">
                     <h3>Age</h3>
-                    <p><?php echo $portfolio_data['age']; ?> y.o hahahahahaha huh...</p>
+                    <p>18 y.o hahahahahaha huh...</p>
                 </div>
                 
                 <div class="info-card">
                     <h3>Your Birthday</h3>
-                    <p><?php echo $portfolio_data['birthday']; ?> (omg... this month?!)</p>
+                    <p>20 November 2005 (omg... this month?!)</p>
                 </div>
                 
                 <div class="info-card">
                     <h3>Hobby</h3>
-                    <p><?php echo $portfolio_data['hobby']; ?></p>
+                    <p>Bermain game dan membaca novel.</p>
                 </div>
             </div>
             
             <div class="profile-section">
-                <div class="name-tag"><?php echo $portfolio_data['name']; ?>, <?php echo $portfolio_data['nickname']; ?></div>
+                <div class="name-tag">Adelia Khoirun Nisa, Adelia</div>
                 
                 <div class="profile-image">
-                    <?php if ($imageExists): ?>
-                        <img src="<?php echo $portfolio_data['profile_image']; ?>" 
-                             alt="Profile Photo of <?php echo $portfolio_data['name']; ?>"
-                             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                        <div class="profile-placeholder" style="display: none;">
-                            <div class="icon">📷</div>
-                            <div>Image failed to load</div>
-                            <small>(<?php echo $portfolio_data['profile_image']; ?>)</small>
-                        </div>
-                    <?php else: ?>
-                        <div class="profile-placeholder">
-                            <div class="icon">👤</div>
-                            <div>Profile Photo</div>
-                            <small>(<?php echo $portfolio_data['profile_image']; ?>)</small>
-                        </div>
-                    <?php endif; ?>
+                    <img src="image.png" 
+                         alt="Profile Photo of Adelia Khoirun Nisa"
+                         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="profile-placeholder" style="display: none;">
+                        <div class="icon">📷</div>
+                        <div>Image failed to load</div>
+                        <small>(image.png)</small>
+                    </div>
                 </div>
                 
-                <div class="image-status <?php echo $imageExists ? 'status-success' : 'status-error'; ?>">
-                    <?php if ($imageExists): ?>
-                        ✓ Image file found: <?php echo $portfolio_data['profile_image']; ?>
-                    <?php else: ?>
-                        ⚠ Image file not found: <?php echo $portfolio_data['profile_image']; ?>
-                    <?php endif; ?>
+                <div class="image-status status-error" id="imageStatus">
+                    ⚠ Image file not found: image.png
                 </div>
             </div>
             
             <div class="about-content">
                 <h3>Background</h3>
-                <p><?php echo $portfolio_data['background']; ?></p>
+                <p>Saya tamatan dari SMK DR CIPTO MANGUNKUSUMO, saya suka art dan suka menggambar, dan ingin menambah kemampuan saya dalam IT dan desain grafis.</p>
                 
                 <div class="personal-info">
                     <div class="info-item">
                         <strong>NPM:</strong>
-                        <?php echo $portfolio_data['npm']; ?>
+                        2414372007
                     </div>
                     <div class="info-item">
                         <strong>Class:</strong>
-                        <?php echo $portfolio_data['kelas']; ?>
+                        II TIF REGULAR 1A
                     </div>
                     <div class="info-item">
                         <strong>Major:</strong>
-                        <?php echo $portfolio_data['jurusan']; ?>
+                        Teknologi Informasi
                     </div>
                     <div class="info-item">
                         <strong>Address:</strong>
-                        <?php echo $portfolio_data['alamat']; ?>
+                        Medan Baru, Jln K.H. Wahid Hasyim, Rumah Dinas No. 3D
                     </div>
                 </div>
                 
@@ -445,18 +410,25 @@ $imageExists = checkImageExists($portfolio_data['profile_image']);
 
         createParticles();
 
-        // Image error handling
+        // Image loading check
         document.addEventListener('DOMContentLoaded', function() {
-            const images = document.querySelectorAll('img');
-            images.forEach(img => {
-                img.addEventListener('error', function() {
-                    console.log('Image failed to load:', this.src);
-                    this.style.display = 'none';
-                    const placeholder = this.nextElementSibling;
-                    if (placeholder) {
-                        placeholder.style.display = 'flex';
-                    }
-                });
+            const img = document.querySelector('.profile-image img');
+            const imageStatus = document.getElementById('imageStatus');
+            
+            img.addEventListener('load', function() {
+                imageStatus.innerHTML = '✓ Image file loaded: image.png';
+                imageStatus.className = 'image-status status-success';
+            });
+            
+            img.addEventListener('error', function() {
+                console.log('Image failed to load:', this.src);
+                this.style.display = 'none';
+                const placeholder = this.nextElementSibling;
+                if (placeholder) {
+                    placeholder.style.display = 'flex';
+                }
+                imageStatus.innerHTML = '⚠ Image file not found: image.png';
+                imageStatus.className = 'image-status status-error';
             });
         });
     </script>
